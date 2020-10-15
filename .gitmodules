@@ -1,0 +1,4 @@
+[submodule "day1/boyacky"]
+	path = day1/boyacky
+	url = git@github.com:hassaku63/boyacky.git
+	branch = master
