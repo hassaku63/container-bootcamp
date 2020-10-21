@@ -76,22 +76,12 @@ docker push ${DOCKER_REMOTE_REPOSITORY}:${IMAGE_TAG}
 
 AWS CLI `ecs register-task-definition` を使って、タスク定義を登録します。
 
+まずは CLI のパラメータ仕様を見ていきましょう。
+
 Docs:
 
 - [AWS CLI - ecs register-task-definition](https://docs.aws.amazon.com/cli/latest/reference/ecs/register-task-definition.html)
 - [AWS Developer guide - Amazon ECS Task Definitions](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definitions.html)
-
-タスク定義は、**どのようなコンテナが ECS で稼働するのか**を ECS に伝えます。
-
-- コンテナイメージ
-- コンテナが使用する CPU, メモリリソース（タスク単位あるいはコンテナ単体での指定が可能）
-- The launch type to use, which determines the infrastructure on which your tasks are hosted
-- Task の中で使用する Docker のネットワーキングモード
-- タスクのロギング設定
-- コンテナが実行終了した／fail した場合に、Task の実行は継続すべきかどうか
-- コンテナが実行開始したときに、実行されるべきコマンド
-- Any data volumes that should be used with the containers in the task
-- タスクに対して割り当てる IAM Role
 
 ### ecs register-task-definition パラメータ仕様
 
@@ -116,6 +106,22 @@ arg | description
 [--inference-accelerators \<value\>] | Elastic Inference Accelerators を利用する場合の設定 ([doc](https://docs.aws.amazon.com/ja_jp/AmazonECS/latest/developerguide/deep-learning-containers.html))
 [--cli-input-json \<value\>] | -
 [--generate-cli-skeleton \<value\>] | -
+
+タスク定義は、**どのようなコンテナが ECS で稼働するのか**を ECS に伝えます。タスク定義作成時に設定できることを日本語表現に置き換えると次のような内容になるでしょう。
+
+- コンテナイメージ
+- コンテナが使用する CPU, メモリリソース（タスク単位あるいはコンテナ単体での指定が可能）
+- (未訳) The launch type to use, which determines the infrastructure on which your tasks are hosted
+- Task の中で使用する Docker のネットワーキングモード
+- タスクのロギング設定
+- コンテナが実行終了した／fail した場合に、Task の実行は継続すべきかどうか
+- コンテナが実行開始したときに、実行されるべきコマンド
+- Any data volumes that should be used with the containers in the task
+- タスクに対して割り当てる IAM Role
+
+どのようなコンテナが起動するのか、あるいはコンテナ自身がどのような Spec で起動してほしいのか(what)、といった情報がタスク定義における関心事であり、そのコンテナを「どこで(where)、どのように(how)ローンチしたいのか」についてはタスク定義の概念から外れることがわかると思います。
+
+案件のユースケースに対して、対応する設定は可能なのか／可能であるならどこで指定すれば良いのか？...そのようなケースに遭遇したら、この原則を（後述のサービス作成のパラメータ仕様とともに）覚えておくとよいでしょう。
 
 #### Network mode 'awsvpc' (--network-mode)
 
