@@ -46,8 +46,8 @@ export AWS_REGION=$(curl -s http://169.254.169.254/latest/dynamic/instance-ident
 ECR レポジトリの名前をシェル変数にセット
 
 ```bash
-DOCKER_IMAGE_NAME=boyacky/web-app
-DOCKER_REMOTE_REPOSITORY=${AWS_ACCOUNT}.dkr.ecr.${AWS_REGION}.amazonaws.com/${DOCKER_IMAGE_NAME}
+export DOCKER_IMAGE_NAME=boyacky/web-app
+export DOCKER_REMOTE_REPOSITORY=${AWS_ACCOUNT}.dkr.ecr.${AWS_REGION}.amazonaws.com/${DOCKER_IMAGE_NAME}
 ```
 
 ## アプリケーションの最新版を ECR に push
@@ -61,7 +61,7 @@ aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS 
 イメージをビルドします。ここでは、ビルドを実行した時点での日時をタグとして付与することにします。
 
 ```bash
-IMAGE_TAG=$(date +%Y%m%d-%H%M%S)
+export IMAGE_TAG=$(date +%Y%m%d-%H%M%S)
 docker build -t ${DOCKER_IMAGE_NAME}:${IMAGE_TAG} .
 ```
 
