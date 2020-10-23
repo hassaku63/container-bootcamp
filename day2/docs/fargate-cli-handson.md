@@ -31,16 +31,16 @@ Fargate タイプの ECS クラスタと、稼働するネットワーク (VPC, 
 シェル変数のセット
 
 ```bash
-AWS_ACCOUNT=<your-account-id>
-AWS_REGION=<your-region>  # ap-northeast-1
+export AWS_ACCOUNT=<your-account-id>
+export AWS_REGION=<your-region>  # ap-northeast-1
 ```
 
 **Note**: Cloud9 の動作環境と ECS のデプロイ先となる環境の AWS アカウントおよびリージョンが一致している場合は、 Cloud9 コンソール上で以下のコマンドを実行することでセットすべき値を取得可能です
 
 ```bash
 # Cloud9 console
-AWS_ACCOUNT=$(curl -s http://169.254.169.254/latest/dynamic/instance-identity/document | python3 -c "import json, sys; print(json.load(sys.stdin)['accountId']);")
-AWS_REGION=$(curl -s http://169.254.169.254/latest/dynamic/instance-identity/document | python3 -c "import json, sys; print(json.load(sys.stdin)['region']);")
+export AWS_ACCOUNT=$(curl -s http://169.254.169.254/latest/dynamic/instance-identity/document | python3 -c "import json, sys; print(json.load(sys.stdin)['accountId']);")
+export AWS_REGION=$(curl -s http://169.254.169.254/latest/dynamic/instance-identity/document | python3 -c "import json, sys; print(json.load(sys.stdin)['region']);")
 ```
 
 ECR レポジトリの名前をシェル変数にセット
