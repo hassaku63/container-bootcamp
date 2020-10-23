@@ -22,7 +22,7 @@
                 "name": "boyacky-webapp",
                 "command": [
                     "-m",
-                    "notif.py"
+                    "osenchi.py"
                 ],
                 "environment": [
                     {
