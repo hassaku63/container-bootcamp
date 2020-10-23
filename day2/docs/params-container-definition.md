@@ -1,12 +1,12 @@
 # container-definition
 
-`ecs register-task-definition` のオプションとして指定する `--container-definitions` の仕様について解説する。
+`ecs register-task-definition` のオプションとして指定する `--container-definitions` の仕様について解説します。
 
 ## 基本的なパラメータ
 
 [Developr guide (ECS) - Task Definition Parameters - Standard Container Definition Parameters](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/task_definition_parameters.html#standard_container_definition_params)
 
-以下の4要素に関する設定が基本的なパラメータとなる。
+以下の4要素に関する設定が基本的なパラメータとなります。
 
 - Name
 - Image
@@ -24,14 +24,13 @@ portMappings | コンテナホストとコンテナ間のポートマッピン�
 ### memory
 
 Fargate の場合、指定は任意。
+Memory で指定したメモリ以上をコンテナが確保しようとした場合、**そのコンテナは kill されます**。
 
-Memory で指定したメモリ以上をコンテナが確保しようとした場合、**そのコンテナは kill される**。
-
-Task definition の `Memory` パラメータの値を超えないように指定する必要がある。
+Task definition の `Memory` パラメータの値を超えないように指定する必要があります。
 
 ### memoryReservation
 
-`docker run` の `--memory-reservation` に相当する。
+`docker run` の `--memory-reservation` に相当。
 
 [docker docs](https://docs.docker.com/engine/reference/run/#runtime-constraints-on-resources)
 
@@ -72,7 +71,7 @@ protocol | str | no | ポートマッピングに使用するプロトコル。 
 
 ### Health Check
 
-コンテナが公開しているヘルスチェック用に関する設定。
+コンテナがホストに対して公開するヘルスチェック用の設定。
 
 `docker run` の引数に対応する。 ([docker docs](https://docs.docker.com/engine/reference/run/#healthcheck))
 
