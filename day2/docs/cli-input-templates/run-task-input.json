@@ -22,12 +22,12 @@
                 "name": "boyacky-webapp",
                 "command": [
                     "-m",
-                    "osenchi.py"
+                    "osenchi"
                 ],
                 "environment": [
                     {
                         "name": "EXPORT_BUCKET",
-                        "value": "bucket-name"
+                        "value": "${EXPORT_BUCKET}"
                     }
                 ]
             }
